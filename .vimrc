@@ -26,6 +26,7 @@ Plugin 'https://github.com/ternjs/tern_for_vim.git'
 Plugin 'https://github.com/maksimr/vim-jsbeautify.git'
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
 Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,6 +70,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+" ycm
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+
 ".vimrc
 map <c-f> :call JsBeautify()<cr>
 " or
@@ -93,3 +98,13 @@ set foldlevelstart=99
 
 "ctrlp
 map <c-b> :CtrlPBuffer<cr>
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint']
