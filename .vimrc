@@ -99,7 +99,6 @@ set foldlevelstart=99
 "ctrlp
 map <c-b> :CtrlPBuffer<cr>
 
-
 " syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -110,4 +109,4 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
 
-" abc
+" test
