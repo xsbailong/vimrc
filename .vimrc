@@ -26,7 +26,9 @@ Plugin 'https://github.com/ternjs/tern_for_vim.git'
 Plugin 'https://github.com/maksimr/vim-jsbeautify.git'
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'scrooloose/syntastic'
+Plugin 'gcorne/vim-sass-lint'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -50,7 +52,8 @@ syntax enable
 set background=dark
 colorscheme solarized
 set nu
-set tabstop=4 shiftwidth=4
+"set tabstop=4 shiftwidth=4
+set tabstop=2 shiftwidth=2
 set expandtab
 "set autoindent
 "set smartindent
@@ -71,7 +74,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " ycm
-let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_select_completion = ['<enter>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
 ".vimrc
@@ -104,9 +107,21 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_enable_balloons = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_sass_checkers=["sasslint"]
+let g:syntastic_scss_checkers=["sasslint"]
 
-" test
+" 补全
+set completeopt=menu 
+
+" jsx
+let g:jsx_ext_required = 0
+
+" Remove trailing whitespace in vim before saving
+" 对于新建文件，可能需要重新打开才能识别文件类型(:e)
+autocmd FileType sass,scss,css,c,cpp,python,ruby,java,sh,html,javascript,jsx,tpl autocmd BufWritePre <buffer> :%s/\s\+$//e
